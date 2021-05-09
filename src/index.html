@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="images/favicon-32x32.png"
+      type="image/x-icon"
+    />
+    <script src="js/index.js" defer></script>
+    <title>Todo App</title>
+  </head>
+  <body>
+    <div class="bg-image"></div>
+    <div class="container">
+      <div class="todo-list">
+        <div class="todo-list__header">
+          <h1>TODO</h1>
+          <div class="todo-list__theme-toggle"></div>
+          <input
+            type="text"
+            name="addItem"
+            id="addItem"
+            class="todo-list__input"
+            placeholder="Create a new todo..."
+          />
+        </div>
+
+        <ul class="todo-list__body"></ul>
+
+        <div class="todo-list__filters">
+          <div class="todo-list__items-left">5 items left</div>
+          <ul class="todo-list__filters-buttons">
+            <li id="all" class="todo-list__filters-current"><a>All</a></li>
+            <li id="active">Active</li>
+            <li id="complete">Completed</li>
+          </ul>
+          <div class="todo-list__filters-clear">Clear Completed</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
