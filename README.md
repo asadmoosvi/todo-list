@@ -1,5 +1,8 @@
 # todo list challenge of [front end mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW)
 
+# live website url
+[https://todo-asadmoosvi.netlify.app/](https://todo-asadmoosvi.netlify.app/)
+
 # screenshots
 
 ## dark mode
