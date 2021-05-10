@@ -64,6 +64,10 @@ body {
   font-size: 1.1rem;
 }
 
+body * {
+  transition: 0.3s;
+}
+
 html[data-theme="dark"] .bg-image {
   background: url("../images/bg-desktop-dark.jpg") no-repeat;
   background-size: cover;
