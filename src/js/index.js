@@ -5,7 +5,7 @@ const itemsLeftNode = document.querySelector(".todo-list__items-left");
 const all = document.querySelector("#all");
 const active = document.querySelector("#active");
 const complete = document.querySelector("#complete");
-const clearComplete = document.querySelector('.todo-list__filters-clear');
+const clearComplete = document.querySelector(".todo-list__filters-clear");
 
 input.focus();
 
@@ -189,8 +189,10 @@ function markComplete(e) {
     if (newItem.complete) newItem.complete = false;
     else newItem.complete = true;
     let putRequest = objectStore.put(newItem);
+    let currentFilter = document.querySelector(".todo-list__filters-current");
+    let currentFilterSelected = currentFilter.getAttribute("id");
     putRequest.onsuccess = () => {
-      displayData();
+      displayData(currentFilterSelected);
     };
   };
 }
@@ -207,9 +209,9 @@ complete.addEventListener("click", () => {
   displayData("complete");
 });
 
-clearComplete.addEventListener('click', () => {
-  let transaction = db.transaction(['list_os'], 'readwrite');
-  let objectStore = transaction.objectStore('list_os');
+clearComplete.addEventListener("click", () => {
+  let transaction = db.transaction(["list_os"], "readwrite");
+  let objectStore = transaction.objectStore("list_os");
   objectStore.openCursor().onsuccess = (e) => {
     let cursor = e.target.result;
     if (cursor) {
@@ -219,5 +221,7 @@ clearComplete.addEventListener('click', () => {
       cursor.continue();
     }
   };
-  displayData();
+  let currentFilter = document.querySelector(".todo-list__filters-current");
+  let currentFilterSelected = currentFilter.getAttribute("id");
+  displayData(currentFilterSelected);
 });
