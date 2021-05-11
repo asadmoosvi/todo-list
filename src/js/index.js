@@ -55,7 +55,7 @@ request.onupgradeneeded = (e) => {
   });
   objectStore.createIndex("text", "text", { unique: false });
   objectStore.createIndex("complete", "complete", { unique: false });
-  console.log("database setup complete");
+  //console.log("database setup complete");
 };
 
 input.addEventListener("keyup", (e) => {
@@ -75,11 +75,11 @@ function addData() {
   request.onsuccess = () => {
     input.value = "";
     input.focus();
-    console.log("todo item added");
+    //console.log("todo item added");
   };
 
   transaction.oncomplete = () => {
-    console.log("added item, transaction complete");
+    //console.log("added item, transaction complete");
     displayData();
   };
 
