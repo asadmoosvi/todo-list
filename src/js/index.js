@@ -93,6 +93,20 @@ function displayData(kind = "all") {
     list.firstChild.remove();
   }
 
+  if (kind === "all") {
+    all.classList.add("todo-list__filters-current");
+    active.classList.remove("todo-list__filters-current");
+    complete.classList.remove("todo-list__filters-current");
+  } else if (kind === "active") {
+    all.classList.remove("todo-list__filters-current");
+    active.classList.add("todo-list__filters-current");
+    complete.classList.remove("todo-list__filters-current");
+  } else if (kind === "complete") {
+    all.classList.remove("todo-list__filters-current");
+    active.classList.remove("todo-list__filters-current");
+    complete.classList.add("todo-list__filters-current");
+  }
+
   let objectStore = db.transaction("list_os").objectStore("list_os");
   objectStore.openCursor().onsuccess = (e) => {
     let cursor = e.target.result;
@@ -118,21 +132,12 @@ function displayData(kind = "all") {
       listItem.appendChild(text);
       listItem.appendChild(remove);
       if (kind === "all") {
-        all.classList.add("todo-list__filters-current");
-        active.classList.remove("todo-list__filters-current");
-        complete.classList.remove("todo-list__filters-current");
         list.appendChild(listItem);
       } else if (kind === "active") {
-        all.classList.remove("todo-list__filters-current");
-        active.classList.add("todo-list__filters-current");
-        complete.classList.remove("todo-list__filters-current");
         if (!cursor.value.complete) {
           list.appendChild(listItem);
         }
       } else if (kind === "complete") {
-        all.classList.remove("todo-list__filters-current");
-        active.classList.remove("todo-list__filters-current");
-        complete.classList.add("todo-list__filters-current");
         if (cursor.value.complete) {
           list.appendChild(listItem);
         }
