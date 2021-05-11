@@ -2,6 +2,7 @@
 
 :root {
   --br: 5px;
+  --lh: 1.6;
 }
 
 html[data-theme="dark"] {
@@ -62,6 +63,7 @@ body {
   color: var(--clr-text);
   font-family: var(--ff);
   font-size: 1.1rem;
+  line-height: var(--lh);
 }
 
 html[data-theme="dark"] .bg-image {
@@ -114,6 +116,7 @@ html[data-theme="light"] .bg-image {
     border: none;
     font-size: inherit;
     border-radius: var(--br);
+    line-height: inherit;
   }
 
   &__body {
