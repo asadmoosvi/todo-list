@@ -220,8 +220,8 @@ function deleteData(e) {
   objectStore.delete(itemId);
   transaction.oncomplete = () => {
     e.target.parentNode.remove();
+    updateItemsLeft();
   };
-  updateItemsLeft();
 }
 
 function markComplete(e) {
