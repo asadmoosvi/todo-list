@@ -13,6 +13,7 @@ html[data-theme="dark"] {
   --clr-text-cross: hsl(233, 14%, 35%);
   --clr-text-filter: hsl(234, 11%, 52%);
   --clr-text-filter-current: hsl(220, 98%, 61%);
+  --drag-border: white;
 
   --gradient: linear-gradient(
     to bottom right,
@@ -30,6 +31,14 @@ html[data-theme="dark"] {
     height: 25px;
     justify-self: end;
   }
+
+  .drag-icon {
+    background: url("../images/drag_handle_white_24dp.svg");
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    margin-right: 1em;
+  }
 }
 
 html[data-theme="light"] {
@@ -40,6 +49,7 @@ html[data-theme="light"] {
   --clr-text-cross: hsl(236, 33%, 92%);
   --clr-text-filter: hsl(236, 9%, 61%);
   --clr-text-filter-current: hsl(220, 98%, 61%);
+  --drag-border: black;
   --gradient: linear-gradient(
     to bottom right,
     hsl(192, 100%, 67%),
@@ -53,6 +63,14 @@ html[data-theme="light"] {
     width: 25px;
     height: 25px;
     justify-self: end;
+  }
+
+  .drag-icon {
+    background: url("../images/drag_handle_black_24dp.svg");
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    margin-right: 1em;
   }
 }
 
@@ -137,6 +155,11 @@ html[data-theme="light"] .bg-image {
     border-bottom: 0.5px solid var(--clr-text-cross);
     background: var(--list-bg);
 
+    &:hover {
+      cursor: move;
+      filter: brightness(90%);
+    }
+
     &_checked {
       text-decoration: line-through;
       color: var(--clr-text-cross);
@@ -216,4 +239,8 @@ html[data-theme="light"] .bg-image {
       color: var(--clr-text-filter-current);
     }
   }
+}
+
+.dragging {
+  border: 1px solid var(--drag-border);
 }

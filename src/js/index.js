@@ -113,6 +113,9 @@ function displayData(kind = "all") {
     if (cursor) {
       const listItem = document.createElement("li");
       listItem.classList.add("todo-list__item");
+      listItem.draggable = true;
+      const dragIcon = document.createElement("div");
+      dragIcon.classList.add("drag-icon");
       const check = document.createElement("div");
       check.classList.add("todo-list__item-check");
       const remove = document.createElement("div");
@@ -128,6 +131,7 @@ function displayData(kind = "all") {
 
       remove.onclick = deleteData;
       check.onclick = markComplete;
+      listItem.appendChild(dragIcon);
       listItem.appendChild(check);
       listItem.appendChild(text);
       listItem.appendChild(remove);
@@ -142,11 +146,52 @@ function displayData(kind = "all") {
           list.appendChild(listItem);
         }
       }
+      addDragEvents(listItem);
       cursor.continue();
+    } else {
+      // stuff to do after displaying has been complete
     }
   };
   updateItemsLeft();
 }
+
+list.addEventListener("dragover", (e) => {
+  e.preventDefault();
+});
+
+function addDragEvents(listItem) {
+  listItem.addEventListener("dragstart", () => {
+    listItem.classList.add("dragging");
+    setTimeout(() => {
+      listItem.style.visibility = "hidden";
+    }, 0);
+  });
+  listItem.addEventListener("dragend", () => {
+    listItem.classList.remove("dragging");
+    listItem.style.visibility = "visible";
+  });
+  listItem.addEventListener("drag", (e) => {
+    let siblings = [...list.children].filter((item) => item != listItem);
+    let minOffSet = Number.NEGATIVE_INFINITY;
+    let nextItem = null;
+    for (const sibling of siblings) {
+      let siblingRect = sibling.getBoundingClientRect();
+      let siblingPos = siblingRect.top + siblingRect.height / 2;
+      let offset = e.clientY - siblingPos;
+      if (offset > minOffSet && offset < 0) {
+        minOffSet = offset;
+        nextItem = sibling;
+      }
+    }
+
+    if (nextItem) {
+      list.insertBefore(listItem, nextItem);
+    } else {
+      list.appendChild(listItem);
+    }
+  });
+}
+
 
 function updateItemsLeft() {
   let objectStore = db.transaction("list_os").objectStore("list_os");
