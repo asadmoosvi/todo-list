@@ -171,6 +171,10 @@ html[data-theme="light"] .bg-image {
         background-position: center;
       }
     }
+    &:hover {
+      cursor: pointer;
+      filter: brightness(90%);
+    }
   }
 
   &__filters {

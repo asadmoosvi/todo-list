@@ -128,6 +128,9 @@ function displayData(kind = "all") {
 
       remove.onclick = deleteData;
       check.onclick = markComplete;
+      listItem.onclick = () => {
+        check.click();
+      };
       listItem.appendChild(check);
       listItem.appendChild(text);
       listItem.appendChild(remove);
@@ -180,6 +183,7 @@ function deleteData(e) {
 }
 
 function markComplete(e) {
+  e.stopPropagation();
   let itemId = Number(e.target.parentNode.dataset["id"]);
   let transaction = db.transaction(["list_os"], "readwrite");
   let objectStore = transaction.objectStore("list_os");
